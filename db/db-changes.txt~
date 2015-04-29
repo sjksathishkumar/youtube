@@ -1,0 +1,11 @@
+  
+Date : 22-04-2015 Updated by Sathish
+
+----------------------------------------------------------------------
+
+ALTER TABLE  `email_templates` ADD  `emailTemplateType` ENUM(  "G",  "C" ) NOT NULL DEFAULT  'G' COMMENT  'G => General C => Contract' AFTER  `emailContent`;
+
+
+ALTER TABLE  `email_templates` ADD  `inUse` ENUM(  '0',  '1' ) NOT NULL DEFAULT  '0' COMMENT  '0 => Not in Use 1 => In Use' AFTER  `emailTemplateType` ;
+
+

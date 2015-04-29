@@ -1,0 +1,321 @@
+//
+// Input groups
+// --------------------------------------------------
+
+// Base styles
+// -------------------------
+.input-group {
+  position: relative; // For dropdowns
+  display: table;
+  border-collapse: separate; // prevent input groups from inheriting border styles from table cells when placed within a table
+
+  // Undo padding and float of grid classes
+  &[class*="col-"] {
+    float: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .form-control {
+    // Ensure that the input is always above the *appended* addon button for
+    // proper border colors.
+    position: relative;
+    z-index: 2;
+
+    // IE9 fubars the placeholder attribute in text inputs and the arrows on
+    // select elements in input groups. To fix it, we float the input. Details:
+    // https://github.com/twbs/bootstrap/issues/11561#issuecomment-28936855
+    float: left;
+
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+// Sizing options
+//
+// Remix the default form control sizing classes into new ones for easier
+// manipulation.
+
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+  .input-lg();
+}
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .btn {
+  .input-sm();
+}
+
+
+// Display as table-cell
+// -------------------------
+.input-group-addon,
+.input-group-btn,
+.input-group .form-control {
+  display: table-cell;
+
+  &:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+}
+// Addon and addon wrapper for buttons
+.input-group-addon,
+.input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle; // Match the inputs
+}
+
+// Text input groups
+// -------------------------
+.input-group-addon {
+  padding: @padding-base-vertical @padding-base-horizontal;
+  font-size: @font-size-base;
+  font-weight: normal;
+  line-height: 1;
+  color: @input-color;
+  text-align: center;
+  background-color: @input-group-addon-bg;
+  border: 1px solid @input-group-addon-border-color;
+  border-radius: @border-radius-base;
+
+  // Sizing
+  &.input-sm {
+    padding: @padding-small-vertical @padding-small-horizontal;
+    font-size: @font-size-small;
+    border-radius: @border-radius-small;
+  }
+  &.input-lg {
+    padding: @padding-large-vertical @padding-large-horizontal;
+    font-size: @font-size-large;
+    border-radius: @border-radius-large;
+  }
+
+  // Nuke default margins from checkboxes and radios to vertically center within.
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-top: 0;
+  }
+}
+
+// Reset rounded corners
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+  .border-right-radius(0);
+}
+.input-group-addon:first-child {
+  border-right: 0;
+}
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  .border-left-radius(0);
+}
+.input-group-addon:last-child {
+  border-left: 0;
+}
+
+// Button input groups
+// -------------------------
+.input-group-btn {
+  position: relative;
+  // Jankily prevent input button groups from wrapping with `white-space` and
+  // `font-size` in combination with `inline-block` on buttons.
+  font-size: 0;
+  white-space: nowrap;
+
+  // Negative margin for spacing, position for bringing hovered/focused/actived
+  // element above the siblings.
+  > .btn {
+    position: relative;
+    + .btn {
+      margin-left: -1px;
+    }
+    // Bring the "active" button to the front
+    &:hover,
+    &:focus,
+    &:active {
+      z-index: 2;
+    }
+  }
+
+  // Negative margin to only have a 1px border between the two
+  &:first-child {
+    > .btn,
+    > .btn-group {
+      margin-right: -1px;
+    }
+  }
+  &:last-child {
+    > .btn,
+    > .btn-group {
+      margin-left: -1px;
+    }
+  }
+}
+/* My input box */
+.input_box{
+ border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: "Flaticon";
+    font-size: 14px !important;
+    font-weight: normal !important;
+    margin:10px 5px 15px;
+    padding:11px 10px;
+	width:31.9%; position:relative;
+	float:left;background: url("../images/valid_star.png") no-repeat scroll right top @white;
+.txt{ width:100%; border:none;}
+}
+.input_box_full{ border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: "Flaticon";
+    font-size: 14px !important;
+    font-weight: normal !important;
+    margin:10px 5px 14px;
+    padding:11px 10px;
+	width:98.8%; position:relative;
+	float:left;background: url("../images/valid_star.png") no-repeat scroll right top @white;
+	.txt{ width:100%; border:none;}
+	}
+
+.select-style {
+    border-radius: 4px;
+    font-family: "Flaticon";
+    font-size: 14px !important;
+    font-weight: normal !important;
+    margin:5px;
+    padding:11px 10px;
+    overflow: hidden;
+border: 1px solid #ccc;
+    background: #fff url("../images/down_arrow.png") no-repeat 82% 50%; text-align:left; width:100%;
+}
+.dob_wrap .open > .dropdown-toggle.btn-default{background: #fff url("../images/down_arrow.png") no-repeat 82% 50%;}
+.mydropdown-menu{top:48px; left:5px; width:100%}
+
+.selectboxstyle {
+    border-radius: 4px;
+    font-family: "Flaticon";
+    font-size: 14px !important;
+    font-weight: normal !important;
+    margin:5px;
+    padding:9px;
+    overflow: hidden;
+border: 1px solid #ccc;
+    background: #fff url("../images/down_arrow.png") no-repeat 82% 50%; text-align:left; width:100%;
+}
+.selectboxstyle select {
+   
+    width: 100%;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;padding:0px;
+}
+
+.selectboxstyle select:focus {
+    outline: none;
+}
+.selectboxstyle select option {
+    padding:5px; border:none;
+}
+.gender{
+    background: #fff url("../images/down_arrow.png") no-repeat 95% 50%;
+}
+
+
+.gender .select-style {
+    background: #fff url("../images/down_arrow.png") no-repeat 95% 50%;
+}
+.cardtype .select-style {background: #fff url("../images/down_arrow.png") no-repeat 95% 50%;}
+
+.active_bg_img .open > .dropdown-toggle.btn-default{background: #fff url("../images/down_arrow.png") no-repeat 95% 50%;}
+
+.dob{float:left; width:33%; padding:5px;}
+.gender{width:97.5%;padding:5px;}
+.card_dat{background-position:88% 50%; width:46%; float:left; position:relative;}
+.card_dat .valid_star,.cardtype .valid_star{top:0px; right:0px;}
+.cardtype{background-position:95% 50%;}
+
+
+.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{background-image:url("../images/down_arrow.png"); }
+
+#accepted input[type=checkbox]:not(old),
+#accepted input[type=radio   ]:not(old){
+  width     : 0;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1em;
+  opacity   : 0;
+   
+}
+
+#accepted input[type=checkbox]:not(old) + label,
+#accepted input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  line-height  : 1.5em;
+
+}
+
+#accepted input[type=checkbox]:not(old) + label > span,
+#accepted input[type=radio   ]:not(old) + label > span{
+  display          : inline-block;
+  width            : 2.26em;
+  height           : 2.26em;
+  margin           : 0.25em 0.5em 0.25em 0.25em;
+  border           : 1px solid #cccccc;
+  border-radius    : 0.25em;
+  background       : #ffffff;
+  vertical-align   : middle;
+ 
+}
+
+#accepted input[type=checkbox]:not(old):checked + label > span,
+#accepted input[type=radio   ]:not(old):checked + label > span{
+   
+}
+
+#accepted input[type=checkbox]:not(old):checked + label > span:before{
+  content     : '✓';
+  display     : block;
+  width       : 1em;
+  color       : rgb(153,204,102);
+  font-size   : 2.10em;
+  line-height : 1em;
+  text-align  : center;
+  font-weight : bold;
+
+}
+
+#accepted input[type=radio]:not(old):checked +  label > span > span{
+  display          : block;
+  width            : 1.5em;
+  height           : 1.5em;
+  margin           : 0.30em;
+  border           : 0.0625em solid rgb(115,153,77);
+  border-radius    : 0.125em;
+  float:left;
+  background       : rgb(153,204,102);
+  background-image :    -moz-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image :     -ms-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image :      -o-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image : -webkit-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image :         linear-gradient(rgb(179,217,140),rgb(153,204,102));
+}
+#accepted input[type=checkbox]
+
+.btn-primary{border-color:#ffffff;}
+
