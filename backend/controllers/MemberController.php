@@ -164,7 +164,7 @@ class MemberController extends Controller
      * @return mixed
      */
     
-    public function actionEditgst()
+    /*public function actionEditgst()
     {
         $msg='';
         $model = $this->findModel(Yii::$app->user->id);
@@ -189,29 +189,29 @@ class MemberController extends Controller
             ]);
         }
         
-    }
+    }*/
+
     public function actionEditprofile()
         {
-            //$modelSettings =new Settings;
-            //$objSettings= $modelSettings->find()->one();
-            $msg='';
             $model = $this->findModel(Yii::$app->user->id);
             $model->scenario = 'editprofile';
             if ($model->load(Yii::$app->request->post())) {
+                    if(!empty($_POST['filehidden']))
+                    {
+                        $oldImage = $_POST['filehidden'];
+                        //echo $oldImage;
+                    }
                     $image = UploadedFile::getInstance($model, 'picture');
                     if($image==null)
                         {
                             $model->picture=Yii::$app->request->post('filehidden');
                             if($model->save())
                                         {
-                                                //Yii::$app->session->set('pagging',$_POST['Admin']['page_setting']);
-                                                Yii::$app->session->set('pagging',$_POST['Admin']);
-                                                //$msg="profile is successfully edited";
+                                                Yii::$app->session->set('pagging',$_POST['Admin']['page_setting']);
+                                                //Yii::$app->session->set('pagging',$_POST['Admin']);
                                                 Yii::$app->session->setFlash('editProfileSuccess',true);
                                                 return $this->render('editprofile', [
                                                 'model' => $model,
-                                                //'modelSettings'=>$objSettings
-                                               //'message'=>$msg
                                                 ]);
                                         }
                         }
@@ -224,27 +224,22 @@ class MemberController extends Controller
                             $fileSave=$image->saveAs($path . $rannumber.'_'.$image->baseName . '.' . $rannumber.'_.'.$image->extension);
                             if($fileSave!=false)
                                 {
-                                    
                                     Image::thumbnail($path.$model->picture, 120, 120)->save($paththumb.$model->picture, ['quality' => 80]);
+                                    unlink($path.$oldImage);
+                                    unlink($paththumb.$oldImage);
                                     if($model->save())
                                         {
-                                                //$msg="Profile is successfully Edited";
                                                 Yii::$app->session->setFlash('editProfileSuccess',true);
                                                 return $this->render('editprofile', [
-                                               'model' => $model,
-                                               //'modelSettings'=>$objSettings
-                                               //'message'=>$msg
+                                                'model' => $model,
                                                 ]);
                                         }
                                 }
                    else
                    {
-                                                //$msg="There is a error in uploading files";
                                                 Yii::$app->session->setFlash('editProfileFaild',true);
                                                 return $this->render('editprofile', [
                                                'model' => $model,
-                                               //'modelSettings'=>$objSettings
-                                               //'message'=>$msg
                                                 ]);
                    }
                   
@@ -256,8 +251,6 @@ class MemberController extends Controller
         } else {
             return $this->render('editprofile', [
                 'model' => $model,
-                //'modelSettings'=>$objSettings,
-                'message'=>$msg,
             ]);
         }
     }

@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
               
                   // Notification message on update 
 
-                  if((Yii::$app->session->hasFlash('editTemplateSuccess')) || (Yii::$app->session->hasFlash('createTemplateSuccess'))){ 
+                  if((Yii::$app->session->hasFlash('editTemplateSuccess')) || (Yii::$app->session->hasFlash('createTemplateSuccess')) || (Yii::$app->session->hasFlash('deleteTemplateSuccess')) || (Yii::$app->session->hasFlash('deleteTemplateFaild'))){ 
                         if(Yii::$app->session->getFlash('editTemplateSuccess'))
                         {
                             echo "<script>$.gritter.add({ title: 'Success', text: 'Template Updated successfully', time: 3000 });</script>";
@@ -49,6 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         else if(Yii::$app->session->getFlash('createTemplateSuccess'))
                         {
                             echo "<script>$.gritter.add({ title: 'Success', text: 'Template Created successfully', time: 3000 });</script>";
+                        }
+                        else if(Yii::$app->session->getFlash('deleteTemplateSuccess'))
+                        {
+                            echo "<script>$.gritter.add({ title: 'Success', text: 'Template Deleted successfully', time: 3000 });</script>";
+                        }
+                        else if(Yii::$app->session->getFlash('deleteTemplateFaild'))
+                        {
+                            echo "<script>$.gritter.add({ title: 'Success', text: 'Template Deleted Faild ! Email Template is used with some Datas.', time: 3000 });</script>";
                         }
                     } 
               ?>

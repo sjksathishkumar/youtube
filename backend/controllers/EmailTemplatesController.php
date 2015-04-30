@@ -38,7 +38,7 @@ class EmailTemplatesController extends Controller
         if(!isset(Yii::$app->user->id) )
         {
             return $this->redirect(['/site/login']);     
-        }
+        }   
         else{
             $searchModel = new EmailTemplatesSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -107,7 +107,7 @@ class EmailTemplatesController extends Controller
         }
         else{
             $model = $this->findModel($id);
-            
+            $model->emailDateUpdated =  date('Y-m-d H:i:s');
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('editTemplateSuccess',true);
                 return $this->redirect(['index']);
@@ -132,9 +132,18 @@ class EmailTemplatesController extends Controller
                    return $this->redirect(['/site/login']);     
         }
         else{
-            $this->findModel($id)->delete();
-
-            return $this->redirect(['index']);
+            $model = $this->findModel($id);
+            if($model->emailTemplateIsUsed == '1')
+            {
+                Yii::$app->session->setFlash('deleteTemplateFaild',true);
+                return $this->redirect(['index']);    
+            }
+            else
+            {
+                $this->findModel($id)->delete();
+                Yii::$app->session->setFlash('deleteTemplateSuccess',true);
+                return $this->redirect(['index']);
+            }
         }
     }
 

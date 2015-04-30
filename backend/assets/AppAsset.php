@@ -18,6 +18,8 @@ class AppAsset extends AssetBundle
     
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+    //public $baseUrl = '@backend';
+    //public $sourcePath = '@backend/web';
     public $css = [
         'css/style.css',
         'css/themes.css',
@@ -31,7 +33,8 @@ class AppAsset extends AssetBundle
     ];
    
     public $js = [
-      	'js/jquery.min.js',
+      	/*'js/jquery.min.js',
+        'js/bootstrap.min.js',
         'js/plugins/nicescroll/jquery.nicescroll.min.js',
         'js/plugins/imagesLoaded/jquery.imagesloaded.min.js',
         'js/plugins/jquery-ui/jquery.ui.core.min.js',
@@ -56,6 +59,7 @@ class AppAsset extends AssetBundle
         'js/plugins/tagsinput/jquery.tagsinput.min.js',
         'js/plugins/icheck/jquery.icheck.min.js',
         'js/plugins/gritter/jquery.gritter.min.js',
+        'js/plugins/placeholder/jquery.placeholder.min.js',*/
         
     ];
     public $depends = [

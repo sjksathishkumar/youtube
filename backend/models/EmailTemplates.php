@@ -34,9 +34,9 @@ class EmailTemplates extends \yii\db\ActiveRecord
         return [
             [['emailTitle', 'emailFromName', 'emailFromEmail', 'emailSubject', 'emailContent','emailTemplateType', 'emailDateAdded'], 'required'],
             [['emailContent'], 'string'],
-            [['inUse', 'emailDateAdded', 'emailDateUpdated'], 'safe'],
+            [['emailTemplateIsUsed', 'emailDateAdded', 'emailDateUpdated'], 'safe'],
             [['emailTitle', 'emailFromName', 'emailSubject'], 'string', 'max' => 225],
-            [['emailFromEmail'], 'string', 'max' => 100]
+            [['emailFromEmail'], 'email']
         ];
     }
 

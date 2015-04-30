@@ -37,3 +37,4 @@ $(function() {
 	$form.find('select').select2();
     });
 });
+

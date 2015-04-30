@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-//$this->title = 'Login';
+$this->title = 'Login';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="wrapper">
@@ -50,12 +50,10 @@ use yii\bootstrap\ActiveForm;
 				</div>
                     
                         
-				<div class="submit">
-					<div class="remember">
-                                            
-						<input type="checkbox" name="remember" class="icheck-me" data-skin="square" data-color="blue" id="remember"> <label for="remember">Remember me</label>
-					</div>
-                                    <?php echo Html::submitButton('Sign me in', ['class' => 'btn btn-primary', 'style'=>'float:right']); ?>
+				<div class="submit" align="center">
+					
+                        <?php echo Html::submitButton('Sign In', ['class' => 'btn btn-primary']); ?>
+					
 					
 				</div>
 			<?php ActiveForm::end(); ?>
