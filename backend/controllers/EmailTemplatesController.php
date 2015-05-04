@@ -82,6 +82,7 @@ class EmailTemplatesController extends Controller
             $model = new EmailTemplates();
 
             $model->emailDateAdded =  date('Y-m-d H:i:s');
+           
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('createTemplateSuccess',true);
                 return $this->redirect(['index']);

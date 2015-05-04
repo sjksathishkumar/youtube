@@ -8,22 +8,80 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="partners-search">
+<div class="wide form">
+    <div class="box box-color box-bordered">
+        <div class="box-title">
+            <h3>
+                <i class="icon-reorder"></i>
+                Search
+            </h3>
+            <div class="actions">
+                <a href="#" class="btn btn-mini content-slideUp"><i class="icon-angle-down"></i></a>
+            </div>
+        </div>
+        <div class="box-content">
+            <?php $form = ActiveForm::begin([
+                'action' => ['index'],
+                'method' => 'get',
+            ]); ?>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <?php echo $form->field($model, 'partnerEmail') ?>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <?php echo $form->field($model, 'partnerFirstName') ?>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <?php //echo $form->field($model, 'channelName') ?>
+                    </div>
+                </div>
+            </div> -->
+            
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+            <?php //$form->field($model, 'emailFromName') ?>
 
-    <?= $form->field($model, 'pkPartnerID') ?>
+            <?php //$form->field($model, 'emailFromEmail') ?>
 
-    <?= $form->field($model, 'partnerEmail') ?>
+            <?php //$form->field($model, 'emailSubject') ?>
 
-    <?= $form->field($model, 'auth_key') ?>
+            <?php // echo $form->field($model, 'emailContent') ?>
 
-    <?= $form->field($model, 'password_hash') ?>
+            <?php // echo $form->field($model, 'emailDateAdded') ?>
 
-    <?= $form->field($model, 'password_reset_token') ?>
+            <?php // echo $form->field($model, 'emailDateUpdated') ?>
+
+            <div class="row-fluid">
+                <div class="form-actions span12  search">
+                    <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('Reset', ['/partners'], ['class' => 'btn btn-default']) ?>
+                </div>
+            </div>
+
+
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+</div>
+
+
+    <?php //$form->field($model, 'pkPartnerID') ?>
+
+    <?php //$form->field($model, 'partnerEmail') ?>
+
+    <?php //$form->field($model, 'auth_key') ?>
+
+    <?php //$form->field($model, 'password_hash') ?>
+
+    <?php // $form->field($model, 'password_reset_token') ?>
 
     <?php // echo $form->field($model, 'partnerFirstName') ?>
 
@@ -63,11 +121,4 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'partnerUpdateDate') ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+ 

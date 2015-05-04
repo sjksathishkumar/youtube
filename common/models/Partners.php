@@ -14,7 +14,6 @@ use Yii;
  * @property string $password_reset_token
  * @property string $partnerFirstName
  * @property string $partnerLastName
- * @property integer $fkChannelID
  * @property string $partnershipLevel
  * @property integer $partnerMobile
  * @property string $partnerDateOfBirth
@@ -38,6 +37,10 @@ use Yii;
  */
 class Partners extends \yii\db\ActiveRecord
 {
+    // Global variables
+
+    public $contract; 
+
     /**
      * @inheritdoc
      */
@@ -52,16 +55,15 @@ class Partners extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['partnerEmail', 'auth_key', 'password_hash', 'password_reset_token', 'partnerFirstName', 'partnerLastName', 'fkChannelID', 'partnershipLevel', 'partnerMobile', 'partnerDateOfBirth', 'fkCityID', 'fkCountryID', 'partnerFirstLogin', 'partnerProfilePicture', 'partnerKnowHow', 'partnerStatus', 'partnerContractSigned', 'fkBankID', 'partnerNameInBank', 'partnerBankAccNo', 'partnerSubscribeNewsletter', 'partnerAddedDate', 'partnerUpdateDate'], 'required'],
-            [['fkChannelID', 'partnerMobile', 'fkCityID', 'fkCountryID', 'fkBankID', 'partnerBankAccNo'], 'integer'],
+            [['partnerEmail', 'auth_key', 'password_hash', 'password_reset_token', 'partnerFirstName', 'partnerLastName', 'partnershipLevel', 'partnerMobile', 'partnerDateOfBirth', 'fkCityID', 'fkCountryID', 'partnerFirstLogin', 'partnerProfilePicture', 'partnerKnowHow', 'partnerStatus', 'partnerContractSigned', 'fkBankID', 'partnerNameInBank', 'partnerBankAccNo', 'partnerSubscribeNewsletter', 'partnerAddedDate', 'partnerUpdateDate'], 'required'],
+            [['partnerMobile', 'fkCityID', 'fkCountryID', 'fkBankID', 'partnerBankAccNo'], 'integer'],
             [['partnershipLevel', 'partnerFirstLogin', 'partnerKnowHow', 'partnerStatus', 'partnerContractSigned', 'partnerSubscribeNewsletter'], 'string'],
             [['partnerDateOfBirth', 'partnerAddedDate', 'partnerUpdateDate'], 'safe'],
             [['partnerEmail'], 'string', 'max' => 50],
             [['auth_key', 'password_hash', 'password_reset_token'], 'string', 'max' => 250],
             [['partnerFirstName', 'partnerLastName'], 'string', 'max' => 30],
             [['partnerProfilePicture'], 'string', 'max' => 150],
-            [['partnerNameInBank'], 'string', 'max' => 55],
-            [['fkChannelID'], 'unique']
+            [['partnerNameInBank'], 'string', 'max' => 55]
         ];
     }
 
@@ -78,7 +80,6 @@ class Partners extends \yii\db\ActiveRecord
             'password_reset_token' => 'Password Reset Token',
             'partnerFirstName' => 'Partner First Name',
             'partnerLastName' => 'Partner Last Name',
-            'fkChannelID' => 'Fk Channel ID',
             'partnershipLevel' => 'Partnership Level',
             'partnerMobile' => 'Partner Mobile',
             'partnerDateOfBirth' => 'Partner Date Of Birth',
@@ -109,16 +110,17 @@ class Partners extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFkBank()
+    public function getChannel()
     {
-        return $this->hasOne(Bank::className(), ['pkBankID' => 'fkBankID']);
+        return $this->hasMany(Channel::className(), ['fkPartnerID' => 'pkPartnerID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFkChannel()
+    public function getFkBank()
     {
-        return $this->hasOne(Channel::className(), ['pkChannelID' => 'fkChannelID']);
+        return $this->hasOne(Bank::className(), ['pkBankID' => 'fkBankID']);
     }
+
 }

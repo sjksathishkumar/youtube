@@ -11,8 +11,8 @@ use a3ch3r46\tinymce\TinyMCE;
 
 $this->registerJs(
    '$("document").ready(function(){ 
-        $("#user-gird").on("pjax:end", function() {
-            $.pjax.reload({container:"#user-gird"});  //Reload GridView
+        $("#template-gird").on("pjax:end", function() {
+            $.pjax.reload({container:"#template-gird"});  //Reload GridView
         });
     });'
 );
@@ -27,7 +27,7 @@ $this->registerJs(
                 <a class="btn pull-right" data-toggle="modal" href="<?php echo Yii::$app->urlManager->createUrl('/email-templates');?>"><i class="icon-circle-arrow-left"></i> Back</a>
             </div>
             <div class="box-content nopadding">
-                <?php yii\widgets\Pjax::begin(['id' => 'user-gird']) ?>
+                <?php yii\widgets\Pjax::begin(['id' => 'template-gird']) ?>
                 <?php $form = ActiveForm::begin([
                     'id' => 'user-form',
                     'enableAjaxValidation'=>false,

@@ -1,11 +1,7 @@
   
-Date : 22-04-2015 Updated by Sathish
+Date : 01-05-2015 Updated by Sathish
 
 ----------------------------------------------------------------------
 
-ALTER TABLE  `email_templates` ADD  `emailTemplateType` ENUM(  "G",  "C" ) NOT NULL DEFAULT  'G' COMMENT  'G => General C => Contract' AFTER  `emailContent`;
-
-
-ALTER TABLE  `email_templates` ADD  `inUse` ENUM(  '0',  '1' ) NOT NULL DEFAULT  '0' COMMENT  '0 => Not in Use 1 => In Use' AFTER  `emailTemplateType` ;
-
+ALTER TABLE `partners` CHANGE `partnerStatus` `partnerStatus` ENUM( '0', '1', '2', '3' ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '0 => "New" 1 => "Active" 2 => "Inactive" 3 => "Reject"';
 

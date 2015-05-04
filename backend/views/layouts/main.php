@@ -112,7 +112,19 @@ AppAsset::register($this);
                                 </li>
                             </ul>
                         </li>
-                           
+
+                        <li <?php if (Yii::$app->controller->getUniqueId() == 'user' ) echo 'class="active"'; ?>>
+                            <?php echo Html::a('<span>Assets Management</span> <span class="caret"></span>', 'javascript:void(0);', ['data-toggle' => 'dropdown','class' => 'dropdown-toggle']); ?>
+                            <ul class="dropdown-menu">
+                                <li class='dropdown'>
+                                    <?php echo Html::a('Bank Details', Yii::$app->urlManager->createUrl('/bank')); ?>
+                                </li>
+                                <li class='dropdown'>
+                                    <?php echo Html::a('Channel Category details', Yii::$app->urlManager->createUrl('/channel-category')); ?>
+                                </li>
+                            </ul>
+                        </li>
+                        
                         <li <?php if (Yii::$app->controller->getUniqueId() == 'uturnsetup') echo 'class="active"'; ?>>
                             <?php echo Html::a('<span>Settings</span> <span class="caret"></span>', 'javascript:void(0);', ['data-toggle' => 'dropdown', 'class' => 'dropdown-toggle']); ?>
                             <ul class="dropdown-menu">

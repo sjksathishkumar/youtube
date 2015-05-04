@@ -32,13 +32,23 @@ class PartnersController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PartnersSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(!isset(Yii::$app->user->id) )
+        {
+            return $this->redirect(['/site/login']);     
+        }   
+        else{
+            $searchModel = new PartnersSearch();
+            //print_r($searchModel->getChannel()->all());
+            //exit();
+            //echo "<pre>";
+            //$searchModel->partnerStatus = 0 ;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     /**
@@ -48,9 +58,15 @@ class PartnersController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(!isset(Yii::$app->user->id) )
+        {
+            return $this->redirect(['/site/login']);     
+        }   
+        else{
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
     }
 
     /**
@@ -60,14 +76,20 @@ class PartnersController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Partners();
+        if(!isset(Yii::$app->user->id) )
+        {
+            return $this->redirect(['/site/login']);     
+        }   
+        else{
+            $model = new Partners();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->pkPartnerID]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->pkPartnerID]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         }
     }
 
@@ -77,16 +99,47 @@ class PartnersController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionApprove($id)
     {
-        $model = $this->findModel($id);
+        if(!isset(Yii::$app->user->id) )
+        {
+            return $this->redirect(['/site/login']);     
+        }   
+        else{
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->pkPartnerID]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->pkPartnerID]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Updates an existing Partners model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionReject($id)
+    {
+        if(!isset(Yii::$app->user->id) )
+        {
+            return $this->redirect(['/site/login']);     
+        }   
+        else{
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->pkPartnerID]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         }
     }
 
@@ -98,9 +151,15 @@ class PartnersController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(!isset(Yii::$app->user->id) )
+        {
+            return $this->redirect(['/site/login']);     
+        }   
+        else{
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
     }
 
     /**
