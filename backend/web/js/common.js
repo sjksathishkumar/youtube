@@ -38,8 +38,17 @@ $(function() {
     });
 });
 
-function test()
+/* For getting contract data */
+
+function getContractData()
 {
-	alert('sathis');
+	var val = $('#contractTemplate').val();
+	$.ajax({
+	  url: "../contract/contractdata",
+	  data: 'id='+val,
+	  success: function(data) {
+               tinyMCE.activeEditor.setContent(data);
+            }
+	});
 }
 

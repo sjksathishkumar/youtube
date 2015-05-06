@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\jui\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model backend\PartnersSearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -35,6 +35,50 @@ use yii\widgets\ActiveForm;
                 <div class="control-group">
                     <div class="controls">
                         <?php echo $form->field($model, 'partnerFirstName') ?>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <?= $form->field($model, 'partnerStatus')->dropDownList(['1' => 'Active','2' => 'Inactive', '3' => 'Reject'],['class'=>'select2-me input-xlarge']); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                  
+                 
+                    <div class="controls">
+                        
+                        <?= $form->field($model, 'startDate')->textInput()->widget(DatePicker::className(), [
+
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format'    => 'yyyy-mm-dd',
+                            'startDate' => '1900-01-01',
+                           
+                            'value' => 'YYYY-MM-DD',
+                        ]
+                        ])->label(false); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    
+                 
+                    <div class="controls">
+                        
+                          <?= $form->field($model, 'endDate')->textInput()->widget(DatePicker::className(), [
+
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format'    => 'yyyy-mm-dd',
+                            'startDate' => '1900-01-01',
+                            'value' => 'yyyy-mm-dd',
+                        ]
+                        ])->label(false); ?>
                     </div>
                 </div>
             </div>

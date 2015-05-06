@@ -122,6 +122,9 @@ AppAsset::register($this);
                                 <li class='dropdown'>
                                     <?php echo Html::a('Channel Category details', Yii::$app->urlManager->createUrl('/channel-category')); ?>
                                 </li>
+                                <li class='dropdown'>
+                                    <?php echo Html::a('Channels details', Yii::$app->urlManager->createUrl('/channel')); ?>
+                                </li>                                
                             </ul>
                         </li>
                         
@@ -188,62 +191,62 @@ AppAsset::register($this);
                         <ul class="subnav-menu">
                             <?php if(Yii::$app->controller->getUniqueId() == 'cms' || Yii::$app->controller->getUniqueId() == 'faq' || Yii::$app->controller->getUniqueId() == 'homebanner' || Yii::$app->controller->getUniqueId() == 'product' || Yii::$app->controller->getUniqueId() == 'combo' || Yii::$app->controller->getUniqueId() == 'orders' || Yii::$app->controller->getUniqueId() == 'discount' || Yii::$app->controller->getUniqueId() == 'category') { ?>
                                 <li>
-                                    <?php echo Html::a('Manage CMS', ['/cms']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage FAQs', ['/faq']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Banner', ['/homebanner']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Products', ['/product']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Combos', ['/combo']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Orders', ['/orders']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Coupons', ['/discount']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Category', ['/category']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                     <?php } else if(Yii::$app->controller->getUniqueId() == 'department' || Yii::$app->controller->getUniqueId() == 'helptopic' || Yii::$app->controller->getUniqueId() == 'ticket' || Yii::$app->controller->getUniqueId() == 'staff') { ?>
                                 <li>
-                                      <?php echo Html::a('Manage Department', Yii::$app->urlManager->createUrl('/department')); ?>
+                                      <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Help Topic', Yii::$app->urlManager->createUrl('/helptopic')); ?>
+                                    <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Manage Ticket', Yii::$app->urlManager->createUrl('/ticket/list')); ?>
+                                    <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('My Ticket', Yii::$app->urlManager->createUrl('/ticket/myticket')); ?>
+                                    <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Staff Directory' , Yii::$app->urlManager->createUrl('/staff')); ?>
+                                    <?php echo Html::a('Email Template' , Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                             <?php } else if(Yii::$app->controller->getUniqueId() == 'member' ) { ?>
                                 <li class='dropdown'>
-                                    <?php echo Html::a('Change Password', Yii::$app->urlManager->createUrl('/member/changepassword')); ?>
+                                    <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                                 <li class='dropdown'>
-                                    <?php echo Html::a('Settings', Yii::$app->urlManager->createUrl('/member/editprofile')); ?>
+                                    <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?>
                                 </li>
                             <?php } else if(Yii::$app->controller->getUniqueId() == 'user' || Yii::$app->controller->getUniqueId() == 'customer') { ?> 
-                                <li><?php echo Html::a('Manage Customers', Yii::$app->urlManager->createUrl('/customer')); ?></li>
-                                <li> <?php echo Html::a('Manage Admin User', Yii::$app->urlManager->createUrl('/user')); ?></li>
-                                <li> <?php echo Html::a('Settings', Yii::$app->urlManager->createUrl('/member/editprofile')); ?></li>
+                                <li><?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?></li>
+                                <li> <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/email-templates')); ?></li>
+                                <li> <?php echo Html::a('Email Template', Yii::$app->urlManager->createUrl('/member/email-templates')); ?></li>
                             <?php } else { ?>
                                 <li>
-                                    <?php echo Html::a('Add Banner', ['homebanner/create']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                                 <li>
-                                    <?php echo Html::a('Add CMS Page', ['cms/create']); ?>
+                                    <?php echo Html::a('Email Template', ['/email-templates']); ?>
                                 </li>
                             <?php } ?>
                         </ul>

@@ -55,7 +55,7 @@ class PartnersSearch extends Partners
         //$query = Partners::find()->joinWith(['channel'], true, 'LEFT JOIN');
         // Filter only new listing partners
 
-        $query->andFilterWhere(['like', 'partnerStatus', '0']);
+        $query->andFilterWhere(['not like', 'partnerStatus', '0']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -66,8 +66,8 @@ class PartnersSearch extends Partners
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        /*echo '<pre>';
-        print_r($params); die();*/
+        echo '<pre>';
+        print_r($params); die();
         /*if($params['PartnersSearch']['channelName']!='')
             {
                 
@@ -97,9 +97,10 @@ class PartnersSearch extends Partners
             ->andFilterWhere(['like', 'partnerFirstLogin', $this->partnerFirstLogin])
             ->andFilterWhere(['like', 'partnerProfilePicture', $this->partnerProfilePicture])
             ->andFilterWhere(['like', 'partnerKnowHow', $this->partnerKnowHow])
-            //->andFilterWhere(['like', 'partnerStatus', '0'])
+            ->andFilterWhere(['like', 'partnerStatus', $this->partnerStatus])
             ->andFilterWhere(['like', 'partnerContractSigned', $this->partnerContractSigned])
             ->andFilterWhere(['like', 'partnerNameInBank', $this->partnerNameInBank])
+            ->andFilterWhere(['like', 'partnerAddedDate', $this->partnerAddedDate])
             ->andFilterWhere(['like', 'partnerSubscribeNewsletter', $this->partnerSubscribeNewsletter]);
 
         return $dataProvider;

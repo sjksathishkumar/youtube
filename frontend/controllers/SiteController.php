@@ -158,7 +158,7 @@ class SiteController extends Controller
     
     public function actionIndex()
     {
-        $modelProduct= new \app\models\Product;
+        $modelProduct= new \app\models\Product; 
         return $this->render('index');
     }
    public function actionView($slug)

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\components\CommonFunction;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\PartnersSearch */
@@ -76,9 +77,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     [
                         'class' => 'yii\grid\SerialColumn',
-                        'header' => 'ID',
                         'headerOptions' => ['style'=>'text-align:center'],
                         'contentOptions' => ['style'=>'text-align:center'],
+                    ],
+                    [
+                        'name' => 'id[]',
+                        'class' => 'yii\grid\CheckboxColumn',
+                        'headerOptions' => ['style'=>'text-align:center'],
+                        'contentOptions' => ['style'=>'text-align:center'],
+                        
                     ],
                     [
                         'attribute' => 'partnerFirstName',
@@ -104,6 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['style'=>'text-align:center'],
                         'contentOptions' => ['style'=>'text-align:center'],
                         'value' => function ($data) {
+                            $channel = 'N/A';
                            if(is_object($data))
                             {
                                 foreach ($data->channel as $channel)
@@ -120,35 +128,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     ],
                     [
+                        'attribute' => 'partnerStatus',
+                        'format' => 'raw',
+                        'headerOptions' => ['style'=>'text-align:center'],
+                        'contentOptions' => ['style'=>'text-align:center'],
+                        'value' => function ($data) {
+                            $status = Yii::$app->CommonFunction->statusFurmate($data->partnerStatus);
+                            return $status;    
+                        },
+                    ],
+                    [
                         'header' => 'Action',
                         'class' => 'yii\grid\ActionColumn',
                         'headerOptions' => ['style'=>'text-align:center'],
                         'contentOptions' => ['style'=>'text-align:center'],
-                        'template' => '{Approve} {Reject}',
-                        'buttons' => [
-                            'Approve' => function ($url, $model) {
-                                return Html::a('<i class="icon-ok">Approve</i>', $url, [
-                                            'title' => Yii::t('app', 'Approve'),
-                                ]);
-                            },
-                            'Reject' => function ($url, $model) {
-                                return Html::a('<i class="icon-remove">Reject</i>', $url, [
-                                            'title' => Yii::t('app', 'Reject'),
-                                ]);
-                            }
-                          ],
-                        'urlCreator' => function ($action, $model, $key, $index) {
-                            if ($action === 'Approve') {
-                                $url ='partners/approve?id='.$model->pkPartnerID;
-                               // $url ='controller/action?id='.$model->id;
-                                return $url;
-                            }
-                            if ($action === 'Reject') {
-                                $url ='partners/reject?id='.$model->pkPartnerID;
-                               // $url ='controller/action?id='.$model->id;
-                                return $url;
-                            }
-                          }
+                        'template' => '{view} {update} {delete}',
                     ],
                 ],
             ]); ?>

@@ -34,7 +34,8 @@ class Channel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fkPartnerID', 'youtubeChannelID', 'channelName', 'fkChannelCategoryID', 'channelStatus', 'channelAddDate', 'channelUpdateDate'], 'required'],
+//            [['fkPartnerID', 'youtubeChannelID', 'channelName', 'fkChannelCategoryID', 'channelStatus', 'channelAddDate', 'channelUpdateDate'], 'required'],
+            [[ 'youtubeChannelID', 'channelName', 'channelStatus', 'channelAddDate', 'channelUpdateDate'], 'required'],
             [['fkPartnerID', 'fkChannelCategoryID'], 'integer'],
             [['channelStatus'], 'string'],
             [['channelAddDate', 'channelUpdateDate'], 'safe'],
