@@ -17,6 +17,8 @@ class PartnersSearch extends Partners
      * @inheritdoc
      */
     public $channelName;
+    public $startDate;
+    public $endDate;
 
     public function rules()
     {
@@ -52,8 +54,7 @@ class PartnersSearch extends Partners
         
         $query = Partners::find();
 
-        //$query = Partners::find()->joinWith(['channel'], true, 'LEFT JOIN');
-        // Filter only new listing partners
+        // Filter except new listing partners
 
         $query->andFilterWhere(['not like', 'partnerStatus', '0']);
 
@@ -66,15 +67,30 @@ class PartnersSearch extends Partners
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        echo '<pre>';
-        print_r($params); die();
-        /*if($params['PartnersSearch']['channelName']!='')
-            {
-                
-                $query->andFilterWhere(['like', 'channel.channelName', $params['PartnersSearch']['channelName']]);
-            }*/
+        
+        if(!empty($params['PartnersSearch']['startDate'] && $params['PartnersSearch']['endDate']))
+        {
+            $sDate = date('Y-m-d', strtotime($params['PartnersSearch']['startDate']));
+            $eDate = date('Y-m-d', strtotime($params['PartnersSearch']['endDate']));
+            $query->andFilterWhere(['between', 'partnerAddedDate', $sDate, $eDate]);
+        }
 
-        $query->andFilterWhere([
+        if(!empty($params['PartnersSearch']['partnerEmail']))
+        {
+            $query->andFilterWhere(['like', 'partnerEmail', $this->partnerEmail]);
+        }
+        
+        if(!empty($params['PartnersSearch']['partnerFirstName']))
+        {
+            $query->andFilterWhere(['like', 'partnerFirstName', $this->partnerFirstName]);
+        }
+
+        if($params['PartnersSearch']['partnerStatus'] != 'prompt')
+        {
+            $query->andFilterWhere(['like', 'partnerStatus', $this->partnerStatus]);
+        }
+
+       /* $query->andFilterWhere([
             'pkPartnerID' => $this->pkPartnerID,
             'partnerMobile' => $this->partnerMobile,
             'partnerDateOfBirth' => $this->partnerDateOfBirth,
@@ -84,10 +100,10 @@ class PartnersSearch extends Partners
             'partnerBankAccNo' => $this->partnerBankAccNo,
             'partnerAddedDate' => $this->partnerAddedDate,
             'partnerUpdateDate' => $this->partnerUpdateDate,
-        ]);
+        ]);*/
 
 
-        $query->andFilterWhere(['like', 'partnerEmail', $this->partnerEmail])
+        /*$query->andFilterWhere(['like', 'partnerEmail', $this->partnerEmail])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
@@ -101,7 +117,11 @@ class PartnersSearch extends Partners
             ->andFilterWhere(['like', 'partnerContractSigned', $this->partnerContractSigned])
             ->andFilterWhere(['like', 'partnerNameInBank', $this->partnerNameInBank])
             ->andFilterWhere(['like', 'partnerAddedDate', $this->partnerAddedDate])
-            ->andFilterWhere(['like', 'partnerSubscribeNewsletter', $this->partnerSubscribeNewsletter]);
+            ->andFilterWhere(['like', 'partnerSubscribeNewsletter', $this->partnerSubscribeNewsletter]);*/
+
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
 
         return $dataProvider;
     }

@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'password_reset_token',
             'partnerFirstName',
             'partnerLastName',
-            'fkChannelID',
+           
             'partnershipLevel',
             'partnerMobile',
             'partnerDateOfBirth',

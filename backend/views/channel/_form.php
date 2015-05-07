@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\Partners;
+use yii\helpers\ArrayHelper;
+use app\models\ChannelCategory;
+$modelPartner = new Partners;
+$modelChannelCategory = new ChannelCategory;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Channel */
@@ -26,7 +31,16 @@ use yii\widgets\ActiveForm;
 	                ],
             
             ]); ?>
-            
+            <div class="fullwidth">
+                   <div class="control-group">
+                       <?= Html::activeLabel($model, 'fkPartnerID', ['label'=>'Partner Name <span class="required">*</span>', 'class'=>'control-label']) ?>
+                       <div class="controls">
+                           <?= Html::activeDropDownList($modelPartner, 'pkPartnerID', ArrayHelper::map(Partners::find()->all(), 'pkPartnerID', 'partnerFirstName'),['prompt'=>'Select Partners']) ?>
+                       </div>
+                   </div>
+                   <div class="cb"></div>
+             </div>
+             
              <div class="fullwidth">
                     <div class="control-group">
                         <?= Html::activeLabel($model, 'youtubeChannelID', ['label'=>'Youtube Channel ID <span class="required">*</span>', 'class'=>'control-label']) ?>
@@ -45,7 +59,18 @@ use yii\widgets\ActiveForm;
                         </div>
                     </div>
                     <div class="cb"></div>
-                </div>     
+                </div>
+             
+             <div class="fullwidth">
+                    <div class="control-group">
+                        <?= Html::activeLabel($model, 'fkChannelCategoryID', ['label'=>'Channel Category <span class="required">*</span>', 'class'=>'control-label']) ?>
+                        <div class="controls">
+                            <?= Html::activeDropDownList($modelChannelCategory, 'pkChannelCategoryID', ArrayHelper::map(ChannelCategory::find()->all(), 'pkChannelCategoryID', 'channelCategoryName'),['prompt'=>'Select Channel Category']) ?>
+                            
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>             
              
              <div class="fullwidth">
                     <div class="control-group">
@@ -55,7 +80,7 @@ use yii\widgets\ActiveForm;
                         </div>
                     </div>
                     <div class="cb"></div>
-                </div>              
+                </div>   
              
 	    <div class="note span12"><strong>Note :</strong> <span class="required">*</span> Indicates mandatory fields.</div>
             

@@ -26,7 +26,7 @@ $this->registerJs(
         <div class="box box-color box-bordered">
             <div class="box-title">
                 <h3><i class="icon-table"></i><?php echo  ucfirst(Yii::$app->controller->action->id);?> Account</h3>
-                <a class="btn pull-right" data-toggle="modal" href="<?php echo Yii::$app->urlManager->createUrl('/new-partners');?>"><i class="icon-circle-arrow-left"></i> Back</a>
+                <a class="btn pull-right" data-toggle="modal" href="<?php echo Yii::$app->urlManager->createUrl('/partners');?>"><i class="icon-circle-arrow-left"></i> Back</a>
             </div>
             <div class="box-content nopadding">
                 <?php yii\widgets\Pjax::begin(['id' => 'partner-gird']) ?>
@@ -38,11 +38,32 @@ $this->registerJs(
                     ],
                 ]); ?>
                 
+
                 <div class="fullwidth">
                     <div class="control-group">
-                        <?= Html::activeLabel($model, 'partnerEmail', ['label'=>'Title', 'class'=>'control-label']) ?>
+                        <?= Html::activeLabel($model, 'partnerEmail', ['label'=>'Email', 'class'=>'control-label']) ?>
                         <div class="controls">
                             <?php echo $model->partnerEmail; ?>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+
+                <div class="fullwidth">
+                    <div class="control-group">
+                        <?= Html::activeLabel($model, 'partnerFirstName', ['label'=>'First Name <span class="required">*</span>', 'class'=>'control-label']) ?>
+                        <div class="controls">
+                            <?= $form->field($model, 'partnerFirstName',['errorOptions'=>['class'=>'error']])->textInput()->label(false); ?>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+
+                <div class="fullwidth">
+                    <div class="control-group">
+                        <?= Html::activeLabel($model, 'partnerLastName', ['label'=>'Last Name <span class="required">*</span>', 'class'=>'control-label']) ?>
+                        <div class="controls">
+                            <?= $form->field($model, 'partnerLastName',['errorOptions'=>['class'=>'error']])->textInput()->label(false); ?>
                         </div>
                     </div>
                     <div class="cb"></div>
@@ -87,9 +108,9 @@ $this->registerJs(
                         <?= Html::activeLabel($model, 'partnerLastName', ['label'=>'Channel Category', 'class'=>'control-label']) ?>
                         <div class="controls">
                             <?php 
-                                $cateogoryID = $model->channel[0]['fkChannelCategoryID']; 
-                                $channelName = ChannelCategory::findAll($cateogoryID); 
-                                echo $channelName[0]['channelCategoryName']; 
+                                //$cateogoryID = $model->channel[0]['fkChannelCategoryID']; 
+                                //$channelName = ChannelCategory::findAll($cateogoryID); 
+                                //echo $channelName[0]['channelCategoryName']; 
                             ?>
                         </div>
                     </div>
@@ -113,31 +134,15 @@ $this->registerJs(
                     <div class="cb"></div>
                 </div>
 
-                <div class="fullwidth">
-                    <div class="control-group">
-                        <?= Html::activeLabel($model, 'partnerKnowHow', ['label'=>'Select Template', 'class'=>'control-label']) ?>
-                        <div class="controls">
-                           <?= Html::dropDownList('contractTemplate', null,ArrayHelper::map(Contract::find()->all(), 'pkContractID', 'contractName'), ['id' => 'contractTemplate', 'prompt'=>'Select Template', 'onchange' => 'getContractData()']) ?>
-                        </div>
-                    </div>
-                    <div class="cb"></div>
-                </div>
+               
 
-                <div class="fullwidth">
-                    <div class="control-group">
-                        <?= Html::activeLabel($model, 'contract', ['label'=>'Preview Template', 'class'=>'control-label']) ?>
-                        <div class="controls">
-                           <?php echo  $form->field($model, 'contract')->widget(TinyMCE::className())->label(false); ?>
-                        </div>
-                    </div>
-                    <div class="cb"></div>
-                </div>
+             
 
                 
                 
                 <div class="form-actions span12">  
-                    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Approve', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-                    <?php echo Html::a('Cancel',array('/new-partners'),array('class'=>'btn')); ?>  
+                    <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                    <?php echo Html::a('Cancel',array('/partners'),array('class'=>'btn')); ?>  
                 </div>
                 <?php ActiveForm::end(); ?>
                 <?php yii\widgets\Pjax::end() ?>

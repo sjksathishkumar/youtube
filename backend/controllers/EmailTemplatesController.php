@@ -32,7 +32,7 @@ class EmailTemplatesController extends Controller
      */
     public function actionIndex()
     {
-        /*$ip = Yii::$app->CommonFunction->RealIP();
+        /*$ip = Yii::$app->Youtube->test();
         echo $ip;
         die();*/
         if(!isset(Yii::$app->user->id) )

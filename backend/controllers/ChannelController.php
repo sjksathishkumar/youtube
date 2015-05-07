@@ -83,7 +83,9 @@ class ChannelController extends Controller
             
                 $model->channelAddDate =  date('Y-m-d H:i:s');
                 $model->channelUpdateDate =  date('Y-m-d H:i:s');
-                 
+                $model->fkPartnerID = $_POST['Partners']['pkPartnerID'];
+                $model->fkChannelCategoryID = $_POST['ChannelCategory']['pkChannelCategoryID'];
+//              $x = Yii::$app->request->post(); echo '<pre>';print_r($_POST);print_r($_POST['Partners']['pkPartnerID']); die;
             if($model->save())
             {
                  Yii::$app->session->setFlash('createchannel', true);

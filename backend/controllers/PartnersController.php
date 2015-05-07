@@ -38,10 +38,6 @@ class PartnersController extends Controller
         }   
         else{
             $searchModel = new PartnersSearch();
-            //print_r($searchModel->getChannel()->all());
-            //exit();
-            //echo "<pre>";
-            //$searchModel->partnerStatus = 0 ;
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -99,7 +95,7 @@ class PartnersController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionApprove($id)
+    public function actionUpdate($id)
     {
         if(!isset(Yii::$app->user->id) )
         {

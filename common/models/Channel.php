@@ -20,6 +20,7 @@ use Yii;
  */
 class Channel extends \yii\db\ActiveRecord
 {
+//    public $fkChannelCategoryID;
     /**
      * @inheritdoc
      */
@@ -35,7 +36,7 @@ class Channel extends \yii\db\ActiveRecord
     {
         return [
 //            [['fkPartnerID', 'youtubeChannelID', 'channelName', 'fkChannelCategoryID', 'channelStatus', 'channelAddDate', 'channelUpdateDate'], 'required'],
-            [[ 'youtubeChannelID', 'channelName', 'channelStatus', 'channelAddDate', 'channelUpdateDate'], 'required'],
+            [['youtubeChannelID', 'channelName', 'channelStatus'], 'required'],
             [['fkPartnerID', 'fkChannelCategoryID'], 'integer'],
             [['channelStatus'], 'string'],
             [['channelAddDate', 'channelUpdateDate'], 'safe'],
@@ -53,7 +54,7 @@ class Channel extends \yii\db\ActiveRecord
             'fkPartnerID' => 'Fk Partner ID',
             'youtubeChannelID' => 'Youtube Channel ID',
             'channelName' => 'Channel Name',
-            'fkChannelCategoryID' => 'Fk Channel Category ID',
+            'fkChannelCategoryID' => 'Channel Category',
             'channelStatus' => 'Channel Status',
             'channelAddDate' => 'Channel Add Date',
             'channelUpdateDate' => 'Channel Update Date',

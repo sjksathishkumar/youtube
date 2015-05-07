@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="breadcrumbs">
     <ul>
         <li><?php echo Html::a('Home',['/site/index']); ?><i class="icon-angle-right"></i></li>
-        <li><a href="#">Manage Partners</a></li>
+        <li><?php echo Html::a('Manage Partners',['/partners']); ?></li>
     </ul>
     <div class="close-bread"><a href="#"><i class="icon-remove"></i></a></div>
 </div>
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['style'=>'text-align:center'],
                         'value' => function ($data) {
                             $channel = 'N/A';
-                           if(is_object($data))
+                            if(is_object($data))
                             {
                                 foreach ($data->channel as $channel)
                                 {
